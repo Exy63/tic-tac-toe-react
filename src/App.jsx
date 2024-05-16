@@ -14,14 +14,14 @@ const deriveActivePlayer = (gameTurns) => {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  let currentPlayer = deriveActivePlayer(gameTurns);
+  let activePlayer = deriveActivePlayer(gameTurns);
 
   const handleChangeTurn = (rowIdx, colIdx) => {
     setGameTurns((prevTurns) => {
-      let player = deriveActivePlayer(prevTurns);
+      let currentPlayer = deriveActivePlayer(prevTurns);
 
       const updatedGameTurns = [
-        { square: { rowIdx, colIdx }, player },
+        { square: { rowIdx, colIdx }, player: currentPlayer },
         ...prevTurns,
       ];
 
@@ -36,12 +36,12 @@ function App() {
           <Player
             initialName="Player 1"
             symbol="X"
-            isActive={currentPlayer === 'X'}
+            isActive={activePlayer === 'X'}
           />
           <Player
             initialName="Player 2"
             symbol="O"
-            isActive={currentPlayer === 'O'}
+            isActive={activePlayer === 'O'}
           />
         </ol>
         <GameBoard onChangeTurn={handleChangeTurn} turns={gameTurns} />

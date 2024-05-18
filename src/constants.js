@@ -1,9 +1,12 @@
 export const X_SYMBOL = 'X';
 export const O_SYMBOL = 'O';
 
-export const initialPlayerName = 'Player';
-
-export const initialGameBoard = [
+const INITIAL_PLAYER_NAME = 'Player';
+export const INITAL_PLAYERS = {
+  [X_SYMBOL]: `${INITIAL_PLAYER_NAME} 1`,
+  [O_SYMBOL]: `${INITIAL_PLAYER_NAME} 2`,
+};
+export const INITIAL_GAME_BOARD = [
   [null, null, null],
   [null, null, null],
   [null, null, null],

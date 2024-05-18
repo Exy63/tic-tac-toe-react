@@ -1,6 +1,14 @@
 export const X_SYMBOL = 'X';
 export const O_SYMBOL = 'O';
 
+export const initialPlayerName = 'Player';
+
+export const initialGameBoard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
 export const WINNING_COMBINATIONS = [
   [
     { row: 0, column: 0 },

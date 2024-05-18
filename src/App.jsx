@@ -1,6 +1,7 @@
 import Player from './components/Player';
 import GameBoard from './components/GameBoard';
 import Log from './components/Log';
+import GameOver from './components/GameOver';
 import { useState } from 'react';
 import { O_SYMBOL, X_SYMBOL, WINNING_COMBINATIONS } from './constants';
 
@@ -49,6 +50,8 @@ function App() {
     }
   }
 
+  const hasDraw = gameTurns.length === 9 && !winner;
+
   let activePlayer = deriveActivePlayer(gameTurns);
 
   const handleChangeTurn = (rowIdx, colIdx) => {
@@ -79,7 +82,7 @@ function App() {
             isActive={activePlayer === O_SYMBOL}
           />
         </ol>
-        {winner && <p>You won, {winner}!</p>}
+        {(winner || hasDraw) && <GameOver winner={winner} />}
         <GameBoard onChangeTurn={handleChangeTurn} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />

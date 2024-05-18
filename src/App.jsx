@@ -13,7 +13,6 @@ function App() {
   const gameBoard = deriveGameBoard(gameTurns);
   const winner = deriveWinner(gameBoard, playerNames);
   let hasDraw = gameTurns.length === 9 && !winner;
-
   let activePlayer = deriveActivePlayer(gameTurns);
 
   const handleChangeTurn = (rowIdx, colIdx) => {
@@ -34,10 +33,12 @@ function App() {
   };
 
   const handlePlayerNameChange = (symbol, newName) => {
-    setPlayerNames((prevValue) => ({ ...prevValue, [symbol]: newName }));
-  };
+    const trimmedName = (
+      newName.charAt(0).toUpperCase() + newName.slice(1).toLowerCase()
+    ).trim();
 
-  console.log(playerNames)
+    setPlayerNames((prevValue) => ({ ...prevValue, [symbol]: trimmedName }));
+  };
 
   return (
     <main>
@@ -61,7 +62,7 @@ function App() {
         )}
         <GameBoard onChangeTurn={handleChangeTurn} board={gameBoard} />
       </div>
-      <Log turns={gameTurns} />
+      <Log turns={gameTurns} players={playerNames} />
     </main>
   );
 }
